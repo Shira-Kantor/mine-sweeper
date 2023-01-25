@@ -1,0 +1,35 @@
+body {
+    background-color: rgb(201, 35, 35);
+    color: white;
+    text-align: center;
+  }
+  
+  table {
+   
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    color: black;
+   
+  }
+  td {
+    
+    border: 3px solid black;
+    padding: 30px;
+    text-align: center;
+    background-color:brown
+
+   
+}
+td:hover {
+    background-color: lightgray;
+}
+  .cell {
+    width: 30%;
+    height: 30%;
+    font-size: 1.5em;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  

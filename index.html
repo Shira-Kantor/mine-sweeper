@@ -6,29 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/mineSweeper.css">
+    <img src="img/world.png.png" alt="world" style="width:30%;height:15%;">
     <title>Mine Sweeper</title>
 </head>
 
 <body onload="onInit()">
-    <h1>Mine Sweeper</h1>
+    <p></p>
+   
     <h2>Score: <span>0</span></h2>
-    <h2>Time: <span>0.00</span></h2>
+    <h2>Time: <span class="timer">0.00</span><span> s </span></h2>
+
+    <button class="start" onclick="onStart()">Play</button><br>
+    <td></td>
+    <button class="easy-level" onclick="changeLevel(4)">Easy</button>
+    <button class="medium-level" onclick="changeLevel(8)">Hard</button>
+    <button class="hard-level" onclick="changeLevel(12)">Extreme</button>
+
 
     <div class="modal">
         <h3 class="msg"></h3>
-        <button class="restart-btn" onclick="onInit()">Play Again</button><td></td>
+        <button class="restart-btn" onclick="onInit()">Play Again</button>
+        <td></td>
     </div>
-   
-        <div>
-             <table  class="board"></table>
-            </div> 
-      
-    
 
+    <div>
+        <table class="board"></table>
+    </div>
 
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
-   
+
+    <footer>
+        <p>❤️ SHIRA    KANTOR<br>
+            <!-- <a href="mailto:hege@example.com">hege@example.com</a></p> -->
+    </footer>
 </body>
 
 </html>

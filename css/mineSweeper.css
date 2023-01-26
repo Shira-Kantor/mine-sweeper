@@ -1,15 +1,28 @@
 body {
-    background-color: rgb(201, 35, 35);
+    background-color: rgb(205, 67, 187);
+    margin: 0;
     color: white;
     text-align: center;
   }
-  
-  table {
-   
-    margin: auto;
-    width: 200px;
+
+  .modal {
+    display: none;
+    border: solid 3px grey;
+    width: 300px;
     height: 200px;
-    border-radius: 20%;
+    background-color: rgb(222, 226, 228);
+    color: black;
+    font-size: 32px;
+    position: absolute;
+    top: 200px;
+    left: calc(50% - 150px);
+  }
+ 
+  table {
+   padding-bottom: auto;
+    margin: auto;
+    width: 30%;
+    height: 70%;
     color: black;
    
   }
@@ -18,7 +31,7 @@ body {
     border: 3px solid black;
     padding: 30px;
     text-align: center;
-    background-color:brown
+    background-color:rgb(122, 48, 105)
 
    
 }
@@ -32,4 +45,20 @@ td:hover {
     font-size: 50px;
     font-weight: bold;
   }
+  .marked {
+    background-color: gray;
+}
   
+
+button{
+  background-color: plum
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(65, 5, 69);
+    color: white;
+    text-align: center;
+  }

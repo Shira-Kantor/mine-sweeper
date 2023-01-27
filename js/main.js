@@ -8,6 +8,7 @@ var gBoard
 var gLevel = { size: 4, mines: 2 }
 var gGame = { isOn: false, shownCount: 0, markedCount: 0, secsPassed: 0 }
 var cellCount
+var timerInterval
 
 
 function onInit() {
@@ -98,14 +99,15 @@ function handleClick(event, element, i, j) {
     rendringCell.addEventListener("contextmenu", function (event) {
         event.preventDefault();
         var elCell = event.target;
-        onCellMarked(elCell)
+        onCellMarked(elCell,i,j)
     })
 }
 
-function onCellMarked(elCell) {
+function onCellMarked(elCell,cellI,cellJ) {
     event.preventDefault()
     if (elCell) {
         elCell.innerText = FLAG;
+        gBoard[cellI][cellJ].isMarked = true
     } else {
         console.log("Invalid element");
     }
@@ -118,7 +120,8 @@ function onCellClicked(elCell, cellI, cellJ, board) {
         gameOver()
     } else {
         elCell.innerText = gBoard[cellI][cellJ].minesAroundCount
-        cellCount++
+        gBoard[cellI][cellJ].isShown = true
+        // cellCount++
         if (gBoard[cellI][cellJ].minesAroundCount === 0) {
             expanShown(gBoard, elCell, cellI, cellJ)
         }
@@ -138,7 +141,6 @@ function getEmptyPos() {
 }
 
 function addMine(num) {
-
     for (var m = 0; m < num; m++) {
         var emptyPoss = getEmptyPos()
         gBoard[emptyPoss.i][emptyPoss.j].isMine = true
@@ -168,7 +170,7 @@ function checkWin() {
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard[0].length; j++) {
 
-            if (gBoard[i][j] === FLAG || gBoard[i][j] === BOOM) cellCount++
+            if (gBoard[i][j].isMarked || gBoard[i][j].isShown) 
 
             console.log('cellCount', cellCount)
             if (cellCount === ((gLevel.size ** 2) - gLevel.mines)) {
@@ -184,7 +186,7 @@ function gameOver() {
     console.log('game over');
     var msg = 'Game Over'
     openModal(msg)
-    clearInterval(myInterval)
+    clearInterval(timerInterval)
 }
 
 function updateMinesAroundCount() {

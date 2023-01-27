@@ -6,16 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/mineSweeper.css">
-    <img src="img//Untitled.jpeg" alt="world" style="width:20%;height:10%;">
+   
+    <img src="img//Untitled.jpeg" alt="world" style="width:30%;height:15%;">
     <title>Mine Sweeper</title>
 </head>
 
 <body onload="onInit()">
-   
+    <style>
+        body {
+          background-image: url('img/1.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 100% 100%;
+        }
+        </style>
+    <!-- <p style="background-image: url('img/1.jpg')"></p> -->
     <h2>Score: <span>0</span></h2>
     <h2>Time: <span class="timer">0.00</span><span> s </span></h2>
-    <img src="img/smile.png" alt="smile" style="width:7%;height:4%;">
-    <button class="start" onclick="onStart()">Play</button><br>
+    <img src="img/smile.png" alt="smile" style="width:7%;height:4%;"><br><br>
+    <button class="start" onclick="onStart()">Play</button><br><br>
     <td></td>
     <button class="easy-level" onclick="changeLevel(4)">Easy</button>
     <button class="medium-level" onclick="changeLevel(8)">Hard</button>
@@ -36,8 +45,8 @@
     <script src="js/main.js"></script>
 
     <footer>
-        <p>❤️ SHIRA    KANTOR<br>
-            <!-- <a href="mailto:hege@example.com">hege@example.com</a></p> -->
+        <p>❤️ SHIRA  -  KANTOR<br>
+           
     </footer>
 </body>
 

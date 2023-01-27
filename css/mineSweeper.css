@@ -1,10 +1,16 @@
 body {
-    background-color: rgb(205, 67, 187);
-    margin: 0;
-    color: white;
-    text-align: center;
+  background-color: rgb(205, 67, 187);
+  margin: 0;
+  color: rgb(70, 11, 69);
+  text-align: center;
+  background-image: url("/img/1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
   }
-
+  h2 span {
+    border-style: inset;
+    background-color: rgb(228, 146, 224);
+  }
   .modal {
     display: none;
     border: solid 3px grey;
@@ -54,11 +60,12 @@ button{
   background-color: plum
 }
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgb(65, 5, 69);
-    color: white;
-    text-align: center;
-  }
+  margin: auto;
+  position: fixed;
+  left: 25%;
+  bottom: 0px;
+  width: 50%;
+  height: 3%;
+  background-color: rgb(65, 5, 69);
+  color: rgb(47, 9, 9);
+  text-align: center; } 

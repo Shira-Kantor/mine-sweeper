@@ -12,6 +12,7 @@ var timerInterval
 
 
 function onInit() {
+    markCell = 0
     cellCount = 0
     gGame.isOn = true
     closeModal()
@@ -19,6 +20,7 @@ function onInit() {
 }
 
 function onStart() {
+    markCell = 0
     gGame.isOn = true
     gBoard = buildBoard(4)
     addMine(2)
@@ -32,7 +34,7 @@ function buildBoard(size) {
     for (var i = 0; i < size; i++) {
         board[i] = []
         for (var j = 0; j < size; j++) {
-            board[i][j] = { minesAroundCount: 0, isShown: false, isMine: false, isMarked: true }
+            board[i][j] = { minesAroundCount: 0, isShown: false, isMine: false, isMarked: false }
         }
     }
     return board
@@ -94,23 +96,28 @@ function renderBoard(board) {
 function handleClick(event, element, i, j) {
     if (event.button === 0) {
         onCellClicked(element, i, j, gBoard)
+    } else {
+        var rendringCell = document.querySelector(`.board`);
+        rendringCell.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            var elCell = event.target;
+            onCellMarked(elCell, i, j)
+        })
     }
-    var rendringCell = document.querySelector(`.board`);
-    rendringCell.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-        var elCell = event.target;
-        onCellMarked(elCell,i,j)
-    })
+
 }
 
-function onCellMarked(elCell,cellI,cellJ) {
+function onCellMarked(elCell, cellI, cellJ) {
     event.preventDefault()
     if (elCell) {
+        markCell++
         elCell.innerText = FLAG;
         gBoard[cellI][cellJ].isMarked = true
     } else {
         console.log("Invalid element");
     }
+    checkWin()
+    console.log('gBoard', gBoard)
 }
 
 function onCellClicked(elCell, cellI, cellJ, board) {
@@ -121,11 +128,13 @@ function onCellClicked(elCell, cellI, cellJ, board) {
     } else {
         elCell.innerText = gBoard[cellI][cellJ].minesAroundCount
         gBoard[cellI][cellJ].isShown = true
-        // cellCount++
+        cellCount++
         if (gBoard[cellI][cellJ].minesAroundCount === 0) {
             expanShown(gBoard, elCell, cellI, cellJ)
         }
     }
+    checkWin()
+    console.log('gBoard', gBoard)
 }
 function getEmptyPos() {
     const emptyPoss = []
@@ -156,24 +165,32 @@ function expanShown(board, elCell, cellI, cellJ) {
         if (i < 0 || i >= board.length) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
             if (j < 0 || j >= board[i].length) continue
-            if (board[i][j].isShown) continue
-            var negsCell = document.querySelector(`.cell-${i}-${j}`)
-            // console.log(negsCell.innerText = gBoard[i][j].minesAroundCount, 'negsCell.innerText = gBoard[i][j].minesAroundCount');
-            negsCell.innerText = gBoard[i][j].minesAroundCount
-            cellCount++
-            checkWin()
+            if (!board[i][j].isShown) {
+                 cellCount++
+                board[i][j].isShown = true
+                var negsCell = document.querySelector(`.cell-${i}-${j}`)
+                // console.log(negsCell.innerText = gBoard[i][j].minesAroundCount, 'negsCell.innerText = gBoard[i][j].minesAroundCount');
+                negsCell.innerText = gBoard[i][j].minesAroundCount
+                checkWin()
+            }
         }
     }
 }
-
+var markCell
 function checkWin() {
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard[0].length; j++) {
 
-            if (gBoard[i][j].isMarked || gBoard[i][j].isShown) 
+            // if (!gBoard[i][j].isMarked || !gBoard[i][j].isShown)  return
+            // console.log('cellCount', cellCount)
+            // if (cellCount === ((gLevel.size ** 2) - gLevel.mines)) {
 
-            console.log('cellCount', cellCount)
-            if (cellCount === ((gLevel.size ** 2) - gLevel.mines)) {
+            // if(gBoard[i][j].isMarked) markCell++
+            console.log('markCell',markCell)
+            console.log('cellCount',cellCount)
+            console.log('gLevel.size',gLevel.size)
+            if (cellCount + markCell === gLevel.size ** 2) {
+
                 var msg = 'YOU WIN'
                 openModal(msg)
             }
@@ -196,11 +213,6 @@ function updateMinesAroundCount() {
             gBoard[i][j].minesAroundCount = setMinesNegsCount(i, j, gBoard)
         }
     }
-}
-
-function getClassName(location) {
-    const cellClass = 'cell-' + location.i + '-' + location.j
-    return cellClass
 }
 
 function setMinesNegsCount(cellI, cellJ, board) {

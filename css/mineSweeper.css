@@ -27,14 +27,14 @@ body {
   table {
    padding-bottom: auto;
     margin: auto;
-    width: 30%;
+    width: 20%;
     height: 70%;
     color: black; 
   }
-  
+
   td {
     border: 3px solid black;
-    padding: 30px;
+    padding: 15px;
     text-align: center;
     background-color:rgb(122, 48, 105)
 
@@ -43,8 +43,8 @@ td:hover {
     background-color: lightgray;
 }
   .cell {
-    width: 30%;
-    height: 30%;
+    width: 10%;
+    height: 10%;
     font-size: 1.5em;
     font-size: 50px;
     font-weight: bold;
@@ -52,7 +52,7 @@ td:hover {
   
 button {
   background-color: plum;
-  padding: 12px 28px;
+  padding: 8px 10px;
   border-radius: 50%;
   
 }
